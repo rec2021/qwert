@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="qwert",
-    version="1.0.0",
+    version="1.1.0",
     packages=find_packages(),
 
     # metadata for upload to PyPI
@@ -28,6 +28,6 @@ setup(
     ],
 
     install_requires=[
-        'terminal_print',
+        'cli-print',
     ],
 )

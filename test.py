@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from qwert import dict_fn
+from qwert import file_fn
 
 a = {
     'abc': 1,
@@ -9,15 +9,12 @@ a = {
     'abe': 123,
     'abf': 1234,
     'xx': 12345,
-    'yy': 1123456,
+    'yy': 1123456789,
 }
 
-d = {
-    'abe': 'go',
-    'abf': 'media',
-    'xe': 'halo',
-}
+r = file_fn.cache_to_file('qwert-test', a)
+print(r)
 
-j = '{"abc": 1, "abd": 12, "abe": 123, "abf": 1234, "xx": 12345, "yy": 1123456}'
+r = file_fn.read_cache_from_file('qwert-test', remove=True)
+print(r)
 
-print(dict_fn.get_dict_by_keys(j, d))
