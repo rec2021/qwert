@@ -4,7 +4,7 @@
 import os
 
 
-def read_to_list(path_to_file: str, comment: str = '#'):
+def get_list_from(path_to_file: str, comment: str = '#'):
     """
     Read the file, and returns a list of the valid lines.
 
@@ -30,3 +30,22 @@ def read_to_list(path_to_file: str, comment: str = '#'):
     cp.error('"{}" does not exist.'.format(path_to_file))
     return rows
 
+
+def read_to_list(path_to_file: str, comment: str = '#'):
+    return get_list_from(path_to_file=path_to_file, comment=comment)
+
+
+def put_list_to(path_to_file: str, lines: list):
+    """
+    Write a list to a file in lines.
+
+    :param str path_to_file: /path/to/file
+    :param list lines: source list
+    :return: str
+    """
+    with open(path_to_file, 'w') as fp:
+        content = list()
+        for line in lines:
+            content.append('{}'.format(line))
+        fp.write('\n'.join(content))
+    return path_to_file

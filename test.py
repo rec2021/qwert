@@ -1,19 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from qwert import FileCache
+from qwert import file_fn
 
-fc = FileCache('qwert')
+a = [1, 2, 3, 4, 5]
 
-a = 'hahahaha'
+print(file_fn.put_list_to('a.txt', a))
 
-print(fc.put('a', a))
-
-b = fc.get('a')
-print(b)
-
-c = fc.pull('a')
-print(c)
-
-d = fc.get('a')
-print(d)
