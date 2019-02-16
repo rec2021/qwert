@@ -19,8 +19,10 @@ $ pip3 install qwert
 ## Usage
 
 ``` python
+from qwert import cli
 from qwert import list_fn
 from qwert import dict_fn
 from qwert import file_fn
+from qwert.file_cache import FileCache
 ```
 

@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="qwert",
-    version="1.5.1",
+    version="2.0.1",
     packages=find_packages(),
 
     # metadata for upload to PyPI
@@ -30,5 +30,6 @@ setup(
     install_requires=[
         'cli-print',
         'requests',
+        'pyperclip',
     ],
 )

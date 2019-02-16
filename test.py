@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 # encoding: utf-8
+import cli_print as cp
+from qwert import cli
+import time
 
-from qwert import file_fn
+#
+a = cli.copy('abcde')
+# _ = cli.copy('abcde', False)
+print(a)
 
-a = [1, 2, 3, 4, 5]
+# print('' in 'abc')
 
-print(file_fn.put_list_to('a.txt', a))
 
