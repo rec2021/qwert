@@ -42,22 +42,34 @@ def pause(s: str = 'press any key to continue'):
     return
 
 
-def copy(value: str, with_prompt: bool = True):
+def copy(value: str, force: bool = False, key: str = None):
     """
     Copy to clip.
 
     :param str value: value to be copied
-    :param bool with_prompt: prompt and pause
+    :param bool force: without a prompt pause
+    :param str key: tip
     :return: None
     """
     import cli_print as cp
     import pyperclip
 
-    if with_prompt:
-        pause('Press any key to copy ' + cp.Fore.LIGHTCYAN_EX + value + cp.Style.RESET_ALL + ' to clip')
+    if not force:
+        if key:
+            pause('Press any key to copy {} '.format(key)
+                  + cp.Fore.LIGHTCYAN_EX + str(value)
+                  + cp.Style.RESET_ALL + ' to clip')
+        else:
+            pause('Press any key to copy '
+                  + cp.Fore.LIGHTCYAN_EX + str(value)
+                  + cp.Style.RESET_ALL + ' to clip')
+
         cp.wr('\x1b[1A\x1b[2K')  # remove the prompt line.
         cp.fi()
-    cp.about_t('Copy', value, 'to clip')
+    if key:
+        cp.about_t('Copy {}'.format(key), value, 'to clip')
+    else:
+        cp.about_t('Copy', value, 'to clip')
     pyperclip.copy(value)
     cp.success()
     return
