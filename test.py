@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import cli_print as cp
-from qwert import cli
-import time
+from qwert import base64
 
-cli.sleep(100)
+print(base64.encode('SampleText'))
+
+print(base64.decode('U2FtcGxlVGV4dA'))
 
