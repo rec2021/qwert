@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from qwert import base64
+from qwert import file_fn
 
-print(base64.encode('SampleText'))
-
-print(base64.decode('U2FtcGxlVGV4dA'))
-
+print(file_fn.read('README.md'))

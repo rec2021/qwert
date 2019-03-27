@@ -4,6 +4,22 @@
 import os
 
 
+def read(path_to_file: str):
+    """
+    Read the file, and returns the content directly.
+
+    :param str path_to_file: /path/to/file
+    :return:
+    """
+    if os.path.exists(path_to_file):
+        with open(path_to_file, 'r') as f:
+            return f.read()
+
+    import cli_print as cp
+    cp.error('"{}" does not exist.'.format(path_to_file))
+    return None
+
+
 def get_list_from(path_to_file: str, comment: str = '#'):
     """
     Read the file, and returns a list of the valid lines.
