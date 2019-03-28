@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from qwert import file_fn
+from qwert import ethereum
 
-print(file_fn.read('README.md'))
+address, private_key = ethereum.generate_address_and_private_key()
+
+print(address, private_key)
+
