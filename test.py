@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from qwert import ethereum
+from qwert import text_fn
+#
+# address, private_key = ethereum.generate_address_and_private_key()
+#
+# print(address, private_key)
 
-address, private_key = ethereum.generate_address_and_private_key()
+a = 10000
 
-print(address, private_key)
-
+print(text_fn.gram_align_right('{:.2f} VNET'.format(a)))
