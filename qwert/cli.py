@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
-
-
 import cli_print as cp
 
 
 def raw(s: str = ''):
     """
-    Get input, if empty retry.
+    Get input, retry if empty.
 
     :param str s: prompt
     :return: str
@@ -18,9 +16,26 @@ def raw(s: str = ''):
             return value
 
 
+def integer(s: str = ''):
+    """
+    Get a integer, retry if empty or ValueError.
+
+    :param str s: prompt
+    :return: int
+    """
+    value = None
+    try:
+        while True:
+            value = raw(s)
+            return int(value)
+    except ValueError:
+        print('"{}" is not a integer.'.format(value))
+        return integer(s)
+
+
 def confirm(s: str = ''):
     """
-    Ask yes/no, if invalid retry.
+    Ask yes/no, retry if invalid.
 
     :param str s: prompt
     :return: bool
