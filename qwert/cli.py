@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import cli_print as cp
+import re
 
 
 def raw(s: str = ''):
@@ -31,6 +32,30 @@ def integer(s: str = ''):
     except ValueError:
         print('"{}" is not a integer.'.format(value))
         return integer(s)
+
+
+def str_hex(s: str, case_sensitive: bool = False):
+    """
+    Get a hex, retry if empty or not hex.
+
+    :param str s: prompt
+    :param bool case_sensitive: case_sensitive
+    :return: str
+    """
+    pattern = r'^[0-9a-fA-F]+$'
+
+    while True:
+        r = raw(s)
+        if r.lower() == 'none':
+            return None
+        else:
+            if not case_sensitive:
+                r = r.lower()
+
+            if re.match(pattern, r):
+                return r
+            else:
+                print('must be hex')
 
 
 def confirm(s: str = ''):
