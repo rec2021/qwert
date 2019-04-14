@@ -13,7 +13,7 @@ def read(path_to_file: str):
     """
     if os.path.exists(path_to_file):
         with open(path_to_file, 'r') as f:
-            return f.read()
+            return f.read().strip()
 
     import cli_print as cp
     cp.error('"{}" does not exist.'.format(path_to_file))

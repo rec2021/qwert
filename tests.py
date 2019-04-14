@@ -10,6 +10,9 @@ from qwert import text_fn
 #
 # print(text_fn.gram_align_right('{:.2f} VNET'.format(a)))
 
-from qwert import cli
+from qwert import file_fn
 
-print(cli.integer('integer'))
+c = file_fn.read('test.txt')
+
+print(c)
+print(len(c))
