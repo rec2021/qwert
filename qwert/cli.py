@@ -2,6 +2,7 @@
 # encoding: utf-8
 import cli_print as cp
 import re
+import decimal
 
 
 def raw(s: str = ''):
@@ -32,6 +33,23 @@ def integer(s: str = ''):
     except ValueError:
         print('"{}" is not a integer.'.format(value))
         return integer(s)
+
+
+def dec(s: str = ''):
+    """
+    Get a decimal, retry if empty or ValueError.
+
+    :param str s: prompt
+    :return: int
+    """
+    value = None
+    try:
+        while True:
+            value = raw(s)
+            return decimal.Decimal(value)
+    except decimal.InvalidOperation:
+        print('"{}" is not a decimal.'.format(value))
+        return dec(s)
 
 
 def str_hex(s: str, case_sensitive: bool = False):
