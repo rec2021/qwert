@@ -5,20 +5,54 @@ import re
 import decimal
 
 
-def raw(s: str = ''):
+def confirm(s: str = ''):
+    """
+    Ask yes/no, retry if invalid.
+
+    :param str s: prompt
+    :return: bool
+    """
+    while True:
+        value = input('> {} [y/n]: '.format(s)).lower()
+        if value:
+            if value in 'yesrtui':
+                return True
+            elif value in 'novbm,':
+                return False
+
+
+def raw(s: str = '', preset: str = None):
     """
     Get input, retry if empty.
 
     :param str s: prompt
+    :param str preset: preset value
     :return: str
     """
+    if preset and confirm('Use {} = "{}":'.format(s, preset)):
+        return preset
+
     while True:
         value = input('> {}: '.format(s))
         if value:
             return value
 
 
-def integer(s: str = ''):
+def integer(s: str = '', preset: int = None):
+    """
+    Get a integer, retry if empty or ValueError.
+
+    :param str s: prompt
+    :param int preset: preset value
+    :return: int
+    """
+    if preset and confirm('Use {} = {}:'.format(s, preset)):
+        return preset
+
+    return __integer(s)
+
+
+def __integer(s: str = ''):
     """
     Get a integer, retry if empty or ValueError.
 
@@ -32,10 +66,27 @@ def integer(s: str = ''):
             return int(value)
     except ValueError:
         print('"{}" is not a integer.'.format(value))
-        return integer(s)
+        return __integer(s)
 
 
-def dec(s: str = ''):
+def dec(s: str = '', preset: int or decimal.Decimal or str = None):
+    """
+    Get a decimal, retry if empty or ValueError.
+
+    :param str s: prompt
+    :param int ore decimal.Decimal or str preset: preset value
+    :return: int
+    """
+    try:
+        if preset and confirm('Use {} = {}:'.format(s, decimal.Decimal(preset))):
+            return preset
+        return __dec(s)
+    except decimal.InvalidOperation:
+        print('"{}" is not a decimal.'.format(preset))
+        return __dec(s)
+
+
+def __dec(s: str = ''):
     """
     Get a decimal, retry if empty or ValueError.
 
@@ -49,7 +100,7 @@ def dec(s: str = ''):
             return decimal.Decimal(value)
     except decimal.InvalidOperation:
         print('"{}" is not a decimal.'.format(value))
-        return dec(s)
+        return __dec(s)
 
 
 def str_hex(s: str, case_sensitive: bool = False):
@@ -74,22 +125,6 @@ def str_hex(s: str, case_sensitive: bool = False):
                 return r
             else:
                 print('must be hex')
-
-
-def confirm(s: str = ''):
-    """
-    Ask yes/no, retry if invalid.
-
-    :param str s: prompt
-    :return: bool
-    """
-    while True:
-        value = input('> {} [y/n]: '.format(s)).lower()
-        if value:
-            if value in 'yesrtui':
-                return True
-            elif value in 'novbm,':
-                return False
 
 
 def pause(s: str = 'press any key to continue'):
@@ -136,7 +171,7 @@ def copy(value: str, force: bool = False, key: str = None):
     return
 
 
-def _print_sleep(i: int, t: int):
+def __print_sleep(i: int, t: int):
     """
     Function for `sleep`.
 
@@ -169,11 +204,11 @@ def sleep(t: int = None, b: int = None):
     elif t is None:
         t = random.randint(10, 60)
 
-    _print_sleep(0, t)
+    __print_sleep(0, t)
 
     for i in range(1, t + 1):
         time.sleep(1)
         cp.previous_line(True)
-        _print_sleep(i, t)
+        __print_sleep(i, t)
 
     return t
