@@ -15,7 +15,7 @@ def encode(s, urlsafe: bool = False):
         s = s.encode('utf-8')
 
     if urlsafe:
-        return base64.urlsafe_b64encode(s).decode('utf-8')
+        return base64.urlsafe_b64encode(s).decode('utf-8').rstrip('=')
 
     return base64.b64encode(s).decode('utf-8')
 

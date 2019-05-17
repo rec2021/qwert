@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="qwert",
-    version="2.2.0",
+    version="2.2.1",
     packages=find_packages(),
 
     # metadata for upload to PyPI
