@@ -8,7 +8,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="qwert",
-    version="2.1.11",
+    version="2.2.0",
     packages=find_packages(),
 
     # metadata for upload to PyPI
@@ -19,7 +19,7 @@ setup(
 
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/VisionNetworkProject/python-qwert",
+    url="https://github.com/voken100g/python-qwert",
 
     classifiers=[
         "Programming Language :: Python :: 3",
