@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import cli_print as cp
+
+import os
 import re
 import decimal
+import cli_print as cp
 
 
 def confirm(s: str = ''):
@@ -125,6 +127,34 @@ def str_hex(s: str, case_sensitive: bool = False):
                 return r
             else:
                 print('must be hex')
+
+
+def path_to_file(s: str = None, suffix: str = None, base_dir: str = None, exist: bool = True):
+    """
+    Get a path_to_file.
+
+    :param str s: prompt
+    :param str suffix: suffix
+    :param str base_dir: base dir
+    :param bool exist: verify existing
+    :return: str
+    """
+    if base_dir:
+        if suffix:
+            input_path_to_file = os.path.join(base_dir, '{}{}'.format(raw(s), suffix))
+        else:
+            input_path_to_file = os.path.join(base_dir, raw(s))
+    else:
+        if suffix:
+            input_path_to_file = '{}{}'.format(raw(s), suffix)
+        else:
+            input_path_to_file = raw(s)
+
+    if exist and not os.path.exists(input_path_to_file):
+        cp.error('"{}" does not exist.'.format(input_path_to_file))
+        return path_to_file(s, suffix, base_dir)
+
+    return input_path_to_file
 
 
 def pause(s: str = 'press any key to continue'):
