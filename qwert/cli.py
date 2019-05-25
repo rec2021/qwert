@@ -129,7 +129,7 @@ def str_hex(s: str, case_sensitive: bool = False):
                 print('must be hex')
 
 
-def path_to_file(s: str = None, suffix: str = None, base_dir: str = None, exist: bool = True):
+def path_to_file(s: str, suffix: str = None, base_dir: str = None, exist: bool = True):
     """
     Get a path_to_file.
 
